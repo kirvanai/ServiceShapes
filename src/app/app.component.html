@@ -1,0 +1,64 @@
+<select name="selected" [(ngModel)]="selected">
+  <option *ngFor="let s of shapes" [value]="s">{{s}}</option>
+</select>
+<p *ngIf="area !== 0">Area: {{area}}</p>
+<div *ngIf="selected === 'square'">
+  <form (ngSubmit)="getSquareArea()">
+    <p>Length of Side</p>
+    <input type="number" name="len" [(ngModel)]="len"/>
+    <input type="submit" value="Find My Area"/>
+    <!-- In the summer there are hot shingles in your area -->
+  </form>
+  <div [style.width.px]="len * 5" [style.height.px] = "len * 5" style="background-color: red;"></div>
+</div>
+
+<div *ngIf="selected === 'rectangle'">
+  <form (ngSubmit)="getRectangleArea()">
+    <p>Length</p>
+    <input type="number" name="len" [(ngModel)]="len"/>
+    <p>Width</p>
+    <input type="number" name="width" [(ngModel)]="wid"/>
+    <input type="submit" value="Find My Area"/>
+  </form>
+  <div [style.width.px]="len * 5" [style.height.px] = "wid * 5" style="background-color: red;"></div>
+
+</div>
+
+
+<div *ngIf="selected === 'triangle'">
+  <form (ngSubmit)="getTriangleArea()">
+    <p>Height</p>
+    <input type="number" name="wid" [(ngModel)]="wid"/>
+    <p>Base</p>
+    <input type="number" name="len" [(ngModel)]="len"/>
+    <input type="submit" value="Find My Area"/>
+  </form>
+  <!-- Style may take in an object containing CSS styles. if a style would normally have a dash, angular wants you 
+  to camel case it. Compound styles like the border will take in strings -->
+  <div [style]="getTriangle()">
+    
+  </div>
+</div>
+
+<div *ngIf="selected === 'circle'">
+  <form (ngSubmit)="getCircleArea()">
+    <p>Radius</p>
+    <input type="number" name="len" [(ngModel)]="len">
+    <input type="submit" value="Find My Area">
+  </form>
+  <div [style]="getCircle()">
+  </div>
+</div>
+
+<div *ngIf="selected === 'oval'">
+  <form (ngSubmit)="getOvalArea()">
+    <p>Height</p>
+    <input type="number" name="len" [(ngModel)]="len"/>
+    <p>Width</p>
+    <input type="number" name="wid" [(ngModel)]="wid"/>
+    <input type="submit" value="Find My Area"/>
+  </form>
+  <div [style]="getOval()">
+  </div>
+</div>
+
